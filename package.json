@@ -1,0 +1,8 @@
+{
+  "name": "sh-ask-yesnoskip",
+  "version": "0.0.1",
+  "description": "Simple shell input prompt asks to Yes, No, or Skip",
+  "scripts": [ "bin/ask-yesnoskip.sh" ],
+  "install": "make install",
+}
+
