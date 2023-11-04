@@ -23,23 +23,40 @@ ask_yesnoskip () {
     sht_opts='y/n/S'
   else
     >&2 echo "ASSERT: Unrecognized default_choice: ${default_choice}"
+
     return 1
   fi
 
   ${SKIP_PROMPT_NL:-false} || >&2 echo
   >&2 printf %s "Please ${lng_opts}: ${the_ask}? [${sht_opts}] "
 
+  # ***
+
   local the_choice
-  ${SKIP_PROMPTS:-false} && the_choice='s' || read -e the_choice
-  [ -z "${the_choice}" ] && the_choice="${default_choice}"
-  the_choice="${the_choice,,}"  # lower.
+
+  ${SKIP_PROMPTS:-false} \
+    && the_choice='s' \
+    || read -e the_choice
+
+  # Use default if nothing input.
+  [ -z "${the_choice}" ] \
+    && the_choice="${default_choice}"
+
+  # Lowercase the input.
+  the_choice="${the_choice,,}"
+
+  # ***
 
   # We could consider just the first character:
   #   the_choice=${the_choice:0:1}
-  # or just demand a one-character response.
+  # Or we could allow full and partial words (y, ye, yes, etc.).
+  # But we don't. We require a one-character response.
   if [ "${the_choice}" != "y" ] && [ "${the_choice}" != "s" ]; then
+    # Any input other than 'Y', 'y', 'S', or 's'.
     return 1
   fi
+
+  # Prints either 'y' or 's'.
   printf %s "${the_choice}"
 }
 
