@@ -31,7 +31,7 @@ ask_yesnoskip () {
   fi
 
   ${SKIP_PROMPT_NL:-false} || >&2 echo
-  >&2 printf %s "Please ${lng_opts}: ${the_ask}? [${sht_opts}] "
+  >&2 printf "%s" "Please ${lng_opts}: ${the_ask}? [${sht_opts}] "
 
   # ***
 
