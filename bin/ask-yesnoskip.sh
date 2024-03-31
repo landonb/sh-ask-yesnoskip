@@ -12,6 +12,9 @@
 ask_yesnoskip () {
   local the_ask="$1"
   local default_choice="${2:-N}"
+
+  # ***
+
   if [ "${default_choice}" = "Y" ]; then
     lng_opts='Yes/no/skip'
     sht_opts='Y/n/s'
