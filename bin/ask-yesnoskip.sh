@@ -39,6 +39,10 @@ ask_yesnoskip () {
   else
     read -e the_choice
 
+    if [ -z "${the_choice}" ]; then
+      >&2 echo
+    fi
+  fi
 
   # Use default if nothing input.
   if [ -z "${the_choice}" ]; then
