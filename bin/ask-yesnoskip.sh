@@ -34,13 +34,16 @@ ask_yesnoskip () {
 
   local the_choice
 
-  ${SKIP_PROMPTS:-false} \
-    && the_choice='s' \
-    || read -e the_choice
+  if ${SKIP_PROMPTS:-false}; then
+    the_choice='s'
+  else
+    read -e the_choice
+
 
   # Use default if nothing input.
-  [ -z "${the_choice}" ] \
-    && the_choice="${default_choice}"
+  if [ -z "${the_choice}" ]; then
+    the_choice="${default_choice}"
+  fi
 
   # Lowercase the input.
   the_choice="${the_choice,,}"
