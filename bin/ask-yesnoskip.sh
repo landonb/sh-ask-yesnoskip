@@ -40,7 +40,7 @@ ask_yesnoskip () {
   if ${SKIP_PROMPTS:-false}; then
     the_choice='s'
   else
-    read -e the_choice
+    read the_choice
 
     if [ -z "${the_choice}" ]; then
       >&2 echo
