@@ -53,7 +53,7 @@ ask_yesnoskip () {
   fi
 
   # Lowercase the input.
-  the_choice="${the_choice,,}"
+  the_choice="$(echo "${the_choice}" | tr '[:upper:]' '[:lower:]')"
 
   # ***
 
